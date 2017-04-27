@@ -24,35 +24,13 @@
     <ClInclude Include="targetver.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Bugs.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Program Files\Windows Kits\10\Include\10.0.15063.0\ucrt\corecrt_memcpy_s.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="Bugs.cpp">
+    <ClCompile Include="BugsTest.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Bugs.rc">
-      <Filter>Pliki zasobów</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="small.ico">
-      <Filter>Pliki zasobów</Filter>
-    </Image>
-    <Image Include="Bugs.ico">
-      <Filter>Pliki zasobów</Filter>
-    </Image>
   </ItemGroup>
 </Project>

@@ -112,6 +112,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SFMLInput.cpp" />
+    <ClCompile Include="SFMLRenderer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SFMLInput.h" />
+    <ClInclude Include="SFMLRenderer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BugsCore\BugsCore.vcxproj">
+      <Project>{158f7216-be9b-4b4c-8a34-44f5a2c6cf58}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

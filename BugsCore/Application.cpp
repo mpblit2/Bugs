@@ -17,6 +17,11 @@ int Bugs::Application::Run()
 		inputRenderer_.BeginFrame();
 		inputRenderer_.EndFrame();
 
+		if (inputRenderer_.IsKeyPressed('d'))
+		{
+
+		}
+
 		if (inputRenderer_.IsKeyPressed('q'))
 		{
 			break;

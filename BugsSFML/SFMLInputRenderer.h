@@ -18,6 +18,8 @@ public:
 
 private:
 	std::unique_ptr<sf::RenderWindow> window_;
+	int posX;
+	int posY;
 
 };
 

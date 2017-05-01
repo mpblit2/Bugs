@@ -2,14 +2,13 @@
 
 namespace Bugs
 {
-	struct IRenderer;
-	struct IInput;
+	struct IInputRenderer;
 
 	class Application
 	{
 	public:
-		Application(IRenderer& renderer, IInput& input)
-			: renderer_(renderer), input_(input)
+		Application(IInputRenderer& inputRenderer)
+			: inputRenderer_(inputRenderer)
 		{}
 
 		~Application();
@@ -17,8 +16,7 @@ namespace Bugs
 		int Run();
 	
 	private:
-		IRenderer& renderer_;
-		IInput& input_;
+		IInputRenderer& inputRenderer_;
 	};
 
 }

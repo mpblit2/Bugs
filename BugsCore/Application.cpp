@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Application.h"
-#include "IRenderer.h"
-#include "IInput.h"
+#include "IInputRenderer.h"
 
 using namespace Bugs;
 
@@ -11,22 +10,20 @@ Application::~Application()
 
 int Bugs::Application::Run()
 {
-	renderer_.Init();
-	input_.Init();
+	inputRenderer_.Init();
 
 	while (true)
 	{
-		renderer_.BeginFrame();
-		renderer_.EndFrame();
+		inputRenderer_.BeginFrame();
+		inputRenderer_.EndFrame();
 
-		if (input_.IsKeyPressed('q'))
+		if (inputRenderer_.IsKeyPressed('q'))
 		{
 			break;
 		}
 	}
 
-	renderer_.Shutdown();
-	input_.Shutdown();
+	inputRenderer_.Shutdown();
 
 	return 0;
 }

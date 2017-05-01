@@ -112,12 +112,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="SFMLInput.cpp" />
-    <ClCompile Include="SFMLRenderer.cpp" />
+    <ClCompile Include="SFMLInputRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SFMLInput.h" />
-    <ClInclude Include="SFMLRenderer.h" />
+    <ClInclude Include="SFMLInputRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BugsCore\BugsCore.vcxproj">

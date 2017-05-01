@@ -1,13 +1,11 @@
 #include <SFML/Graphics.hpp>
-#include "SFMLRenderer.h"
-#include "SFMLInput.h"
+#include "SFMLInputRenderer.h"
 #include "../BugsCore/Application.h"
 
 int main()
 {
-	SFMLRenderer renderer;
-	SFMLInput input;
-	Bugs::Application application(renderer, input);
+	SFMLInputRenderer inputRenderer;
+	Bugs::Application application(inputRenderer);
 	
 	return application.Run();
 }

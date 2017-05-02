@@ -1,4 +1,5 @@
 #pragma once
+#include "Bug.h"
 
 namespace Bugs
 {

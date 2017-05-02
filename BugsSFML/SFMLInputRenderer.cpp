@@ -1,5 +1,6 @@
 #include "SFMLInputRenderer.h"
 #include <memory>
+//#include "Bug.h"
 
 SFMLInputRenderer::SFMLInputRenderer() : posX(400), posY(300)
 {
@@ -11,6 +12,34 @@ SFMLInputRenderer::~SFMLInputRenderer()
 
 void SFMLInputRenderer::Shutdown()
 {
+}
+
+bool SFMLInputRenderer::LoadTexture(const std::string & fileName, const std::string & id)
+{
+	//TODO: Here can be an error in sytutaion when whe have wrong fileName or path
+	//Write code to predict this
+	auto& texture = textures_[id];
+	texture.loadFromFile(fileName);
+
+	return true;
+}
+
+void SFMLInputRenderer::UnLoadTexture(const std::string & id)
+{
+	textures_.erase(id);
+}
+
+void SFMLInputRenderer::RenderTexture(const std::string & id, float x, float y)
+{
+	auto it = textures_.find(id);
+	if (it != textures_.end())
+	{
+		auto& texture = it->second;
+		sf::Sprite sprite;
+		sprite.setPosition(x, y);
+		sprite.setTexture(texture);
+		window_->draw(sprite);
+	}
 }
 
 bool SFMLInputRenderer::IsKeyPressed(char key)
@@ -32,29 +61,24 @@ void SFMLInputRenderer::BeginFrame()
 
 void SFMLInputRenderer::EndFrame()
 {
-	sf::Texture myTexture;
-	myTexture.loadFromFile("C:/Projekty/Pictures/animal.png");
+	/*sf::Texture* myTexture = new sf::Texture();
+	myTexture->loadFromFile("C:/Projekty/Pictures/animal.png");
 	sf::Sprite sprite;
-	sprite.setPosition(posX, posY);
+	sprite.setPosition(this->posX, this->posY);
+	sprite.setTexture(*myTexture);
+	
 	if (this->IsKeyPressed('a'))
 	{
-		posX -= 10;
+		this->posX -= 10;
 	}
 	else if (this->IsKeyPressed('d'))
 	{
-		posX += 10;
+		this->posX += 10;
 	}
-	else if (this->IsKeyPressed('w'))
-	{
-		posY -= 10;
-	}
-	else if (this->IsKeyPressed('s'))
-	{
-		posY += 20;
-	}
-
-	sprite.setTexture(myTexture);
 
 	window_->draw(sprite);
+	*/
+
+
 	window_->display();
 }

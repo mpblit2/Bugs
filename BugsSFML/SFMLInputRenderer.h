@@ -13,11 +13,16 @@ public:
 	void BeginFrame() override;
 	void EndFrame() override;
 	void Shutdown() override;
+	bool LoadTexture(const std::string& fileName, const std::string& id) override;
+	void UnLoadTexture(const std::string& id) override;
+	void RenderTexture(const std::string& id, float x, float y) override;
 
 	bool IsKeyPressed(char key) override;
 
 private:
 	std::unique_ptr<sf::RenderWindow> window_;
+	std::map<std::string, sf::Texture> textures_;
+
 	int posX;
 	int posY;
 

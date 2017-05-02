@@ -22,9 +22,5 @@ public:
 private:
 	std::unique_ptr<sf::RenderWindow> window_;
 	std::map<std::string, sf::Texture> textures_;
-
-	int posX;
-	int posY;
-
 };
 

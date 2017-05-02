@@ -1,4 +1,6 @@
 #include "stdafx.h"
+#include <memory>
+#include <vector>
 #include "Application.h"
 #include "IInputRenderer.h"
 
@@ -10,24 +12,46 @@ Application::~Application()
 
 int Bugs::Application::Run()
 {
+	std::vector<std::unique_ptr<Bug>> bugs;
+	bugs.emplace_back(std::make_unique<Bug>("default", 400, 300));
+	bugs.emplace_back(std::make_unique<Bug>("default", 400, 100));
+	bugs.emplace_back(std::make_unique<Bug>("default", 200, 300));
+
+	std::size_t currentBugIndex = 0;
+
 	inputRenderer_.Init();
-	Bug myBug("default", 400, 300);
 	inputRenderer_.LoadTexture("C:\\Projekty\\Pictures\\animal.png", "default");
 
 	while (true)
 	{
 		inputRenderer_.BeginFrame();
-		inputRenderer_.RenderTexture(myBug.GetTextureID(), myBug.GetX(), myBug.GetY());
+		for (auto& bug : bugs)
+		{
+			inputRenderer_.RenderTexture(bug->GetTextureID(), bug->GetX(), bug->GetY());
+		}
+		
 		inputRenderer_.EndFrame();
+		auto& currentBug = *bugs[currentBugIndex];
+		
+		if (inputRenderer_.IsKeyPressed('c'))
+		{
+			//currentBug = (currentBug + 1) % bugs.size()
+			currentBugIndex += 1;
+
+			if (currentBugIndex >= bugs.size())
+			{
+				currentBugIndex = 0;
+			}
+		}
 
 		if (inputRenderer_.IsKeyPressed('a'))
 		{
-			myBug.MoveLeft();
+			currentBug.MoveLeft();
 		}
 
 		if (inputRenderer_.IsKeyPressed('d'))
 		{
-			myBug.MoveRight();
+			currentBug.MoveRight();
 		}
 
 		if (inputRenderer_.IsKeyPressed('q'))

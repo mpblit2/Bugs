@@ -19,6 +19,4 @@ namespace Bugs
 	private:
 		IInputRenderer& inputRenderer_;
 	};
-
 }
-

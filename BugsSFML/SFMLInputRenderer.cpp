@@ -1,8 +1,7 @@
 #include "SFMLInputRenderer.h"
 #include <memory>
-//#include "Bug.h"
 
-SFMLInputRenderer::SFMLInputRenderer() : posX(400), posY(300)
+SFMLInputRenderer::SFMLInputRenderer()
 {
 }
 
@@ -61,24 +60,5 @@ void SFMLInputRenderer::BeginFrame()
 
 void SFMLInputRenderer::EndFrame()
 {
-	/*sf::Texture* myTexture = new sf::Texture();
-	myTexture->loadFromFile("C:/Projekty/Pictures/animal.png");
-	sf::Sprite sprite;
-	sprite.setPosition(this->posX, this->posY);
-	sprite.setTexture(*myTexture);
-	
-	if (this->IsKeyPressed('a'))
-	{
-		this->posX -= 10;
-	}
-	else if (this->IsKeyPressed('d'))
-	{
-		this->posX += 10;
-	}
-
-	window_->draw(sprite);
-	*/
-
-
 	window_->display();
 }

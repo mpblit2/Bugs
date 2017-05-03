@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Vector2.h"
 
 namespace Bugs
 {
@@ -7,6 +8,7 @@ namespace Bugs
 	{
 	public:
 		Bug(std::string textureId, float positionX, float positionY);
+		Bug(std::string textureId, const Vector2& position);
 		~Bug();
 
 		const std::string& GetTextureID() const
@@ -14,14 +16,10 @@ namespace Bugs
 			return this->textureId_;
 		}
 
-		float GetX() const
+		//Tu zwracamy sta³¹ referencjê bo nie chcemy ¿eby ta wartoœæ by³a zmieniana poza klas¹.
+		const Vector2& GetPosition() const
 		{
-			return this->positionX_;
-		}
-
-		float GetY() const
-		{
-			return this->positionY_;
+			return  this->position_;
 		}
 
 		void MoveLeft();
@@ -29,7 +27,9 @@ namespace Bugs
 
 	private:
 		std::string textureId_;
-		float positionX_;
-		float positionY_;
+		Vector2 position_;
+
+		//float positionX_;
+		//float positionY_;
 	};
 }

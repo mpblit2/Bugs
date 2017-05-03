@@ -15,7 +15,7 @@ public:
 	void Shutdown() override;
 	bool LoadTexture(const std::string& fileName, const std::string& id) override;
 	void UnLoadTexture(const std::string& id) override;
-	void RenderTexture(const std::string& id, float x, float y) override;
+	void RenderTexture(const std::string& id, const Bugs::Vector2& position) override;
 
 	bool IsKeyPressed(char key) override;
 

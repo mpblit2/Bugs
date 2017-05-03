@@ -3,7 +3,7 @@
 
 using namespace Bugs;
 
-Bug::Bug(std::string textureId, float positionX, float positionY) : textureId_(textureId), positionX_(positionX), positionY_(positionY)
+Bugs::Bug::Bug(std::string textureId, const Vector2 & position) : textureId_(textureId), position_(position)
 {
 }
 
@@ -13,10 +13,10 @@ Bug::~Bug()
 
 void Bug::MoveLeft()
 {
-	positionX_ -= 10;
+	position_.GetX() -= 10;
 }
 
 void Bug::MoveRight()
 {
-	positionX_ += 10;
+	position_.GetX() += 10;
 }

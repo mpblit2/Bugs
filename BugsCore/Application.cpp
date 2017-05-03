@@ -13,9 +13,9 @@ Application::~Application()
 int Bugs::Application::Run()
 {
 	std::vector<std::unique_ptr<Bug>> bugs;
-	bugs.emplace_back(std::make_unique<Bug>("default", 400, 300));
-	bugs.emplace_back(std::make_unique<Bug>("default", 400, 100));
-	bugs.emplace_back(std::make_unique<Bug>("default", 200, 300));
+	bugs.emplace_back(std::make_unique<Bug>("default", Vector2(400,300)));
+	bugs.emplace_back(std::make_unique<Bug>("default", Vector2(400, 100)));
+	bugs.emplace_back(std::make_unique<Bug>("default", Vector2(200, 300)));
 
 	std::size_t currentBugIndex = 0;
 
@@ -27,7 +27,7 @@ int Bugs::Application::Run()
 		inputRenderer_.BeginFrame();
 		for (auto& bug : bugs)
 		{
-			inputRenderer_.RenderTexture(bug->GetTextureID(), bug->GetX(), bug->GetY());
+			inputRenderer_.RenderTexture(bug->GetTextureID(), bug->GetPosition());
 		}
 		
 		inputRenderer_.EndFrame();

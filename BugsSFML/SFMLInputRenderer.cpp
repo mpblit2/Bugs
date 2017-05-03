@@ -1,5 +1,8 @@
 #include "SFMLInputRenderer.h"
 #include <memory>
+#include "../BugsCore/Vector2.h"
+
+using namespace Bugs;
 
 SFMLInputRenderer::SFMLInputRenderer()
 {
@@ -28,14 +31,14 @@ void SFMLInputRenderer::UnLoadTexture(const std::string & id)
 	textures_.erase(id);
 }
 
-void SFMLInputRenderer::RenderTexture(const std::string & id, float x, float y)
+void SFMLInputRenderer::RenderTexture(const std::string & id, const Bugs::Vector2& position)
 {
 	auto it = textures_.find(id);
 	if (it != textures_.end())
 	{
 		auto& texture = it->second;
 		sf::Sprite sprite;
-		sprite.setPosition(x, y);
+		sprite.setPosition(position.GetX(), position.GetY());
 		sprite.setTexture(texture);
 		window_->draw(sprite);
 	}

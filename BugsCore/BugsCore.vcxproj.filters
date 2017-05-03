@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Pliki źródłowe\Math">
+      <UniqueIdentifier>{06e59f4a-7553-457a-b8d4-c54da7327b90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Entities">
+      <UniqueIdentifier>{f063d449-0438-4935-97bb-bc8b74a96c32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Math">
+      <UniqueIdentifier>{5023a141-34b6-49aa-90a1-dfa193898314}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Entities">
+      <UniqueIdentifier>{9c09cbb3-7430-4e9f-82d5-2c22412bb246}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -31,7 +43,10 @@
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="Bug.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Pliki nagłówkowe\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -42,7 +57,7 @@
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="Bug.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\Entities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

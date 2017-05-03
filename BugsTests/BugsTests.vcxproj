@@ -142,6 +142,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ApplicationTests.cpp" />
+    <ClCompile Include="Vector2Tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BugsCore\BugsCore.vcxproj">

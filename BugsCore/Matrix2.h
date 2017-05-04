@@ -2,7 +2,7 @@
 #include "Vector2.h"
 
 /*TODO:
-	Matxik to zbiór 2 wektorów,
+	Matrix to zbiór 2 wektorów,
 	Vector2 rows_[2];
 	+ zrobiæ prze³adowanie operatora [],
 	- prze³adowaæ operatory jak dla klasy Vector2
@@ -12,8 +12,10 @@
 		- macierz razy wektor,
 		- wektor razy macierz,
 		- macie¿ razy skalar (obustronne)
-	- dodawanie,
-	- odejmowanie.
+	+ dodawanie,
+	+ odejmowanie.
+	- równy,
+	- nierówny,
 */
 
 namespace Bugs
@@ -29,10 +31,20 @@ namespace Bugs
 		{
 		}
 
+		bool operator==(const Matrix2& matrix) const
+		{
+			return this->rows_[0] == matrix[0] && this->rows_[1] == matrix[1];
+		}
+
+		bool operator!=(const Matrix2& matrix) const
+		{
+			return !(*this == matrix);
+		}
+
 		const Vector2& operator[](std::size_t item) const
 		{
 			if(item > 1)
-				throw std::overflow_error("Out of range.");
+				throw std::overflow_error("Out of range Exception.");
 			
 			return rows_[item];
 		}
@@ -45,6 +57,14 @@ namespace Bugs
 			return *this;
 		}
 
+		Matrix2& operator-=(const Matrix2& matrix)
+		{
+			this->rows_[0] -= matrix[0];
+			this->rows_[1] -= matrix[1];
+
+			return *this;
+		}
+
 	private:
 		Vector2 rows_[2];
 	};
@@ -53,5 +73,11 @@ namespace Bugs
 	{
 		Matrix2 result(left);
 		return result += right;
+	}
+
+	inline Matrix2 operator-(const Matrix2& left, const Matrix2& right)
+	{
+		Matrix2 result(left);
+		return result -= right;
 	}
 }

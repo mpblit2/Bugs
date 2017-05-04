@@ -28,8 +28,5 @@ namespace Bugs
 	private:
 		std::string textureId_;
 		Vector2 position_;
-
-		//float positionX_;
-		//float positionY_;
 	};
 }

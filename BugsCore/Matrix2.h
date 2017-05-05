@@ -6,7 +6,7 @@
 	Vector2 rows_[2];
 	+ zrobiæ prze³adowanie operatora [],
 	- prze³adowaæ operatory jak dla klasy Vector2
-	- Nie ma d³ugoœci tylko bêdzie "wyznacznik macierzy"
+	+ Nie ma d³ugoœci tylko bêdzie "wyznacznik macierzy"
 	- Mno¿enie: 
 		- 2 macierzy,
 		- macierz razy wektor,
@@ -69,6 +69,22 @@ namespace Bugs
 			this->rows_[1] -= matrix[1];
 
 			return *this;
+		}
+
+		Matrix2 operator*(const Matrix2& matrix) const
+		{
+			float a00 = rows_[0][0] * matrix[0][0] + rows_[0][1] * matrix[1][0];
+			float a01 = rows_[0][0] * matrix[0][1] + rows_[0][1] * matrix[1][1];
+			float a10 = rows_[1][0] * matrix[0][0] + rows_[1][1] * matrix[1][0];
+			float a11 = rows_[1][1] * matrix[0][1] + rows_[1][1] * matrix[1][1];
+
+			return Matrix2(Vector2(a00, a01), Vector2(a10, a11));
+		}
+
+		//Determinant of the matrix
+		float Det() const
+		{
+			return rows_[0][0] * rows_[1][1] - rows_[1][0] * rows_[0][1];
 		}
 
 	private:

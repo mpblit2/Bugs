@@ -102,3 +102,23 @@ TEST(Matrix2Tests, changingValuesWithAtOperator)
 	EXPECT_FLOAT_EQ(matrix[1][0], 3.0f);
 	EXPECT_FLOAT_EQ(matrix[1][1], 4.0f);
 }
+
+TEST(Matrix2Tests, multiplicationOperatorTest)
+{
+	Matrix2 matrix_1(Vector2(1, 2), Vector2(3, 4));
+	Matrix2 matrix_2(Vector2(4, 3), Vector2(2, 1));
+	
+	Matrix2 matrix = matrix_1 * matrix_2;
+
+	EXPECT_FLOAT_EQ(matrix[0][0], 8.0f);
+	EXPECT_FLOAT_EQ(matrix[0][1], 5.0f);
+	EXPECT_FLOAT_EQ(matrix[1][0], 20.0f);
+	EXPECT_FLOAT_EQ(matrix[1][1], 16.0f);
+}
+
+TEST(Matrix2Tests, detMethodTest)
+{
+	Matrix2 matrix(Vector2(1, 2), Vector2(3, 4));
+
+	EXPECT_FLOAT_EQ(matrix.Det(), -2);
+}

@@ -1,4 +1,6 @@
 #pragma once
+#include <cassert>
+
 /*Stworzyæ operatory:
 + dodawanie,
 + odejmowanie,
@@ -12,7 +14,7 @@ namespace Bugs
 	class Vector2
 	{
 	public:
-		Vector2(float x = 0.0f, float y = 0.0f)
+		explicit Vector2(float x = 0.0f, float y = 0.0f)
 			: x_(x), y_(y)
 		{
 		}
@@ -63,6 +65,18 @@ namespace Bugs
 		bool operator!=(const Vector2& vector) const
 		{
 			return !(this->operator==(vector));
+		}
+
+		float& operator[](std::size_t item)
+		{
+			assert(item < 2);
+			return *(&x_ + item);
+		}
+
+		const float& operator[](std::size_t item) const
+		{
+			assert(item < 2);
+			return *(&x_ + item);
 		}
 
 		//Tu zmieniamy stan obiektu wiêc metoda nie mo¿e byæ 'const'

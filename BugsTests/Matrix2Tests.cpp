@@ -19,13 +19,6 @@ TEST(Matrix2Tests, constructorWithParametersTest)
 	EXPECT_EQ(matrix[1], Vector2(3, 4));
 }
 
-TEST(Matrix2Tests, outOfRangeTest)
-{
-	Matrix2 matrix = Matrix2(Vector2(1, 2), Vector2(3, 4));
-
-	EXPECT_THROW(matrix[2], std::overflow_error);
-}
-
 TEST(Matrix2Tests, addEqualOperatorTest)
 {
 	Matrix2 matrix(Vector2(1, 2), Vector2(3, 4));
@@ -84,4 +77,28 @@ TEST(Matrix2Tests, notEqualOperatorTest)
 	Matrix2 matrix_2(Vector2(4, 3), Vector2(2, 1));
 
 	EXPECT_NE(matrix, matrix_2);
+}
+
+TEST(Matrix2Tests, atOperatorTest)
+{
+	Matrix2 matrix(Vector2(1, 2), Vector2(3, 4));
+
+	EXPECT_FLOAT_EQ(matrix[0][0], 1.0f);
+	EXPECT_FLOAT_EQ(matrix[0][1], 2.0f);
+	EXPECT_FLOAT_EQ(matrix[1][0], 3.0f);
+	EXPECT_FLOAT_EQ(matrix[1][1], 4.0f);
+}
+
+TEST(Matrix2Tests, changingValuesWithAtOperator)
+{
+	Matrix2 matrix(Vector2(0, 0), Vector2(0, 0));
+	matrix[0][0] = 1.0f;
+	matrix[0][1] = 2.0f;
+	matrix[1][0] = 3.0f;
+	matrix[1][1] = 4.0f;
+
+	EXPECT_FLOAT_EQ(matrix[0][0], 1.0f);
+	EXPECT_FLOAT_EQ(matrix[0][1], 2.0f);
+	EXPECT_FLOAT_EQ(matrix[1][0], 3.0f);
+	EXPECT_FLOAT_EQ(matrix[1][1], 4.0f);
 }

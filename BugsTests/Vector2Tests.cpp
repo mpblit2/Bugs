@@ -166,3 +166,11 @@ TEST(Vector2Tests, crossMethodTest)
 
 	EXPECT_FLOAT_EQ(vector_1.Cross(vector_2), 0.0f);
 }
+
+TEST(Vector2Tests, atOperatorTest)
+{
+	Vector2 vector(1, 2);
+
+	EXPECT_FLOAT_EQ(vector[0], 1.0f);
+	EXPECT_FLOAT_EQ(vector[1], 2.0f);
+}

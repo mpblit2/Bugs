@@ -14,8 +14,8 @@
 		- macie¿ razy skalar (obustronne)
 	+ dodawanie,
 	+ odejmowanie.
-	- równy,
-	- nierówny,
+	+ równy,
+	+ nierówny,
 */
 
 namespace Bugs
@@ -41,11 +41,17 @@ namespace Bugs
 			return !(*this == matrix);
 		}
 
+		Vector2& operator[](std::size_t item)
+		{
+			//Assert is used because of efficiency reasons. It gives no runtime overhead.
+			assert(item < 2);
+			return rows_[item];
+		}
+
 		const Vector2& operator[](std::size_t item) const
 		{
-			if(item > 1)
-				throw std::overflow_error("Out of range Exception.");
-			
+			//Assert is used because of efficiency reasons. It gives no runtime overhead.
+			assert(item < 2);
 			return rows_[item];
 		}
 

@@ -122,3 +122,50 @@ TEST(Matrix2Tests, detMethodTest)
 
 	EXPECT_FLOAT_EQ(matrix.Det(), -2);
 }
+
+TEST(Matrix2Tests, multiplicationEqualOperatorTest)
+{
+	Matrix2 matrix(Vector2(1, 2), Vector2(3, 4));
+
+	matrix *= 2;
+
+	EXPECT_FLOAT_EQ(matrix[0][0], 2.0f);
+	EXPECT_FLOAT_EQ(matrix[0][1], 4.0f);
+	EXPECT_FLOAT_EQ(matrix[1][0], 6.0f);
+	EXPECT_FLOAT_EQ(matrix[1][1], 8.0F);
+}
+
+TEST(Matrix2Tests, multiplicationByScalarTest)
+{
+	Matrix2 matrix_1(Vector2(1, 2), Vector2(3, 4));
+
+	Matrix2 matrix = matrix_1 * 2;
+
+	EXPECT_FLOAT_EQ(matrix[0][0], 2.0f);
+	EXPECT_FLOAT_EQ(matrix[0][1], 4.0f);
+	EXPECT_FLOAT_EQ(matrix[1][0], 6.0f);
+	EXPECT_FLOAT_EQ(matrix[1][1], 8.0F);
+}
+
+TEST(Matrix2Tests, leftMultiplicationByScalarOperatorTest)
+{
+	Matrix2 matrix_1(Vector2(1, 2), Vector2(3, 4));
+
+	Matrix2 matrix = 2 * matrix_1;
+
+	EXPECT_FLOAT_EQ(matrix[0][0], 2.0f);
+	EXPECT_FLOAT_EQ(matrix[0][1], 4.0f);
+	EXPECT_FLOAT_EQ(matrix[1][0], 6.0f);
+	EXPECT_FLOAT_EQ(matrix[1][1], 8.0F);
+}
+
+TEST(Matrix2Tests, multiplicationByVectorTest)
+{
+	Matrix2 matrix(Vector2(1, 2), Vector2(3, 4));
+	Vector2 vector(1, 2);
+
+	Vector2  result = matrix * vector;
+
+	EXPECT_FLOAT_EQ(result[0], 5.0f);
+	EXPECT_FLOAT_EQ(result[1], 11.0f);
+}

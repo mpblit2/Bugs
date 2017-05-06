@@ -51,6 +51,21 @@
     <ClInclude Include="Matrix2.h">
       <Filter>Pliki nagłówkowe\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Circle.h">
+      <Filter>Pliki nagłówkowe\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Pliki nagłówkowe\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="LineSegment.h">
+      <Filter>Pliki nagłówkowe\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
+      <Filter>Pliki nagłówkowe\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="HalfLine.h">
+      <Filter>Pliki nagłówkowe\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

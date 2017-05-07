@@ -159,7 +159,7 @@ TEST(Matrix2Tests, leftMultiplicationByScalarOperatorTest)
 	EXPECT_FLOAT_EQ(matrix[1][1], 8.0F);
 }
 
-TEST(Matrix2Tests, multiplicationByVectorTest)
+TEST(Matrix2Tests, rightMultiplicationByVectorTest)
 {
 	Matrix2 matrix(Vector2(1, 2), Vector2(3, 4));
 	Vector2 vector(1, 2);
@@ -168,4 +168,15 @@ TEST(Matrix2Tests, multiplicationByVectorTest)
 
 	EXPECT_FLOAT_EQ(result[0], 5.0f);
 	EXPECT_FLOAT_EQ(result[1], 11.0f);
+}
+
+TEST(Matrix2Tests, leftMultiplicationByVectorTest)
+{
+	Matrix2 matrix(Vector2(1, 2), Vector2(3, 4));
+	Vector2 vector(1, 2);
+
+	Vector2  result = vector * matrix;
+
+	EXPECT_FLOAT_EQ(result[0], 7.0f);
+	EXPECT_FLOAT_EQ(result[1], 10.0f);
 }

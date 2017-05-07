@@ -79,14 +79,6 @@ namespace Bugs
 			return Matrix2(Vector2(a00, a01), Vector2(a10, a11));
 		}
 
-		Vector2& operator*(const Vector2& vector) const
-		{
-			float a0 = rows_[0][0] * vector[0] + rows_[0][1] * vector[1];
-			float a1 = rows_[1][0] * vector[0] + rows_[1][1] * vector[1];
-
-			return Vector2(a0, a1);
-		}
-
 		Matrix2& operator*=(const float scalar)
 		{
 			rows_[0] *= scalar;
@@ -94,6 +86,10 @@ namespace Bugs
 
 			return *this;
 		}
+
+		friend Vector2 operator*(const Matrix2& matrix, const Vector2& vector);
+
+		friend Vector2 operator*(const Vector2& vector, const Matrix2& matrix);
 
 		//Determinant of the matrix
 		float Det() const
@@ -127,5 +123,21 @@ namespace Bugs
 	{
 		Matrix2 result(right);
 		return result *= left;
+	}
+
+	Vector2 operator*(const Matrix2& matrix, const Vector2& vector)
+	{
+		float a0 = matrix.rows_[0][0] * vector[0] + matrix.rows_[0][1] * vector[1];
+		float a1 = matrix.rows_[1][0] * vector[0] + matrix.rows_[1][1] * vector[1];
+
+		return Vector2(a0, a1);
+	}
+
+	Vector2 operator*(const Vector2& vector, const Matrix2& matrix)
+	{
+		float a0 = vector[0] * matrix.rows_[0][0] + vector[1] * matrix.rows_[1][0];
+		float a1 = vector[0] * matrix.rows_[0][1] + vector[1] * matrix.rows_[1][1];
+
+		return Vector2(a0, a1);
 	}
 }

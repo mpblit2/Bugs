@@ -66,6 +66,9 @@
     <ClInclude Include="BoundingBox.h">
       <Filter>Pliki nagłówkowe\Math</Filter>
     </ClInclude>
+    <ClInclude Include="ShapesCollision.h">
+      <Filter>Pliki nagłówkowe\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

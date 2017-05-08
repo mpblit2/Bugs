@@ -142,6 +142,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ApplicationTests.cpp" />
+    <ClCompile Include="BoundingBoxTests.cpp" />
     <ClCompile Include="CircleTests.cpp" />
     <ClCompile Include="Matrix2Tests.cpp" />
     <ClCompile Include="Vector2Tests.cpp" />

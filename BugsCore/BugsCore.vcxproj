@@ -136,6 +136,7 @@
     <ClInclude Include="LineSegment.h" />
     <ClInclude Include="Matrix2.h" />
     <ClInclude Include="BoundingBox.h" />
+    <ClInclude Include="ShapesCollision.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Vector2.h" />

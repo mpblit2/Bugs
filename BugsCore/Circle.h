@@ -10,7 +10,7 @@ namespace Bugs
 	class Circle
 	{
 	public:
-		Circle(const Vector2& position = Vector2(0, 0), float radius = 1.0f) : position_(position) ,radius_(radius)
+		Circle(const Vector2& position, float radius) : position_(position) ,radius_(radius)
 		{}
 
 		~Circle()

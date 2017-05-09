@@ -11,7 +11,7 @@ TEST(BoundingBoxTests, constructorTest)
 	EXPECT_EQ(box.GetHalves(), Vector2(2, 4));
 }
 
-TEST(BoundingBoxTests, isInsideMethodTestIsFalse)
+TEST(BoundingBoxTests, isContainingMethodTestIsFalse)
 {
 	BoundingBox box1(Vector2(1, 1), Vector2(2, 2));
 	BoundingBox box2(Vector2(1, 2), Vector2(1, 2));
@@ -19,7 +19,7 @@ TEST(BoundingBoxTests, isInsideMethodTestIsFalse)
 	EXPECT_FALSE(box1.IsContaining(box2));
 }
 
-TEST(BoundingBoxTests, isInsideMethodTestIsTrue)
+TEST(BoundingBoxTests, isContainingMethodTestIsTrue)
 {
 	BoundingBox box1(Vector2(1, 1), Vector2(2, 2));
 	BoundingBox box2(Vector2(1, 1), Vector2(1, 1));

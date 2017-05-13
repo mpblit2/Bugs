@@ -4,24 +4,25 @@
 
 namespace Bugs
 {
-	inline bool isCollision(const Circle& circle, const BoundingBox& box)
+	inline bool IsCollision(const Circle& circle, const BoundingBox& box)
 	{
 		auto distance = circle.GetPosition() - box.GetPosition();
-		auto boxXandRadiusSum = box.GetHalves()[0] + circle.GetRadius();
-		auto boxYandRadiusSum = box.GetHalves()[1] + circle.GetRadius();
 
-		return ((std::abs(distance.GetX()) <= boxXandRadiusSum)
-			| (std::abs(distance.GetY()) <= boxYandRadiusSum))
-			& 
-			((std::abs(distance.GetX() <= box.GetHalves()[0]) 
-			| (std::abs(distance.GetY() <= box.GetHalves()[1]))));
-/*
-			& ((std::abs(distance.GetY()) <= box.GetHalves()[1]) 
-			| (std::abs(distance.GetX()) <= box.GetHalves()[0]));
-	*/}
-	
+		auto absoluteDistance = Vector2(std::abs(distance.GetX()), std::abs(distance.GetY()));
+		auto distanceHalvesDiff = absoluteDistance - box.GetHalves();
+		auto circleRadiusSquare = circle.GetRadius() * circle.GetRadius();
+
+		return distanceHalvesDiff.GetX() <= circle.GetRadius()
+			&
+			distanceHalvesDiff.GetY() <= circle.GetRadius()
+			&
+			(distanceHalvesDiff.GetX() * distanceHalvesDiff.GetX())
+			+
+			(distanceHalvesDiff.GetY() * distanceHalvesDiff.GetY()) <= circleRadiusSquare;
+	}
+
 	template<typename A, typename B> bool IsCollision(const A& a, const B& b)
 	{
-		return isCollision(a, b);
+		return IsCollision(b, a);
 	}
 }

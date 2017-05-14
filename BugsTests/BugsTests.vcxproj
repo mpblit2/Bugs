@@ -146,6 +146,7 @@
     <ClCompile Include="CircleTests.cpp" />
     <ClCompile Include="Matrix2Tests.cpp" />
     <ClCompile Include="ShapesCollisionTests.cpp" />
+    <ClCompile Include="ShapesContainingTests.cpp" />
     <ClCompile Include="Vector2Tests.cpp" />
   </ItemGroup>
   <ItemGroup>

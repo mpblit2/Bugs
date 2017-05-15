@@ -11,7 +11,7 @@ Application::~Application()
 }
 
 int Bugs::Application::Run()
-{
+{		
 	std::vector<std::unique_ptr<Bug>> bugs;
 	bugs.emplace_back(std::make_unique<Bug>("default", Vector2(400,300)));
 	bugs.emplace_back(std::make_unique<Bug>("default", Vector2(400, 100)));
@@ -22,7 +22,7 @@ int Bugs::Application::Run()
 	inputRenderer_.Init();
 	inputRenderer_.LoadTexture("C:\\Projekty\\Pictures\\animal.png", "default");
 
-	while (true)
+	while (inputRenderer_.IsWindowOpen())
 	{
 		inputRenderer_.BeginFrame();
 		for (auto& bug : bugs)
@@ -58,6 +58,8 @@ int Bugs::Application::Run()
 		{
 			break;
 		}
+
+		
 	}
 
 	inputRenderer_.Shutdown();

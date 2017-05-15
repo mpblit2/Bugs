@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClInclude Include="Bug.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="HalfLine.h" />
     <ClInclude Include="IInputRenderer.h" />

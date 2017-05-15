@@ -72,6 +72,9 @@
     <ClInclude Include="ShapesContaining.h">
       <Filter>Pliki nagłówkowe\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

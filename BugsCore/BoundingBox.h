@@ -19,7 +19,8 @@ namespace Bugs
 	class BoundingBox
 	{
 	public:
-		BoundingBox(const Vector2& position, const Vector2& halves) : position_(position), halves_(halves)
+		BoundingBox(const Vector2& position, const Vector2& halves)
+			: position_(position), halves_(halves)
 		{}
 
 		~BoundingBox()

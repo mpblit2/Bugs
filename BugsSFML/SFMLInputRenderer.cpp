@@ -1,4 +1,5 @@
 #include "SFMLInputRenderer.h"
+#include <iostream>
 #include <memory>
 #include "../BugsCore/Vector2.h"
 
@@ -49,7 +50,7 @@ void SFMLInputRenderer::RenderTexture(const std::string & id, const Bugs::Vector
 	}
 }
 
-Vector2 SFMLInputRenderer::GetHightWidthRetio() const
+std::optional<Vector2> SFMLInputRenderer::GetHightWidthRetio() const
 {
 	return heightWidthRetio_;
 }
@@ -74,6 +75,9 @@ void SFMLInputRenderer::BeginFrame()
 	auto actualVectorSize = sf::Vector2u();
 	auto newVectorSize = sf::Vector2u();
 
+	//
+	heightWidthRetio_ = std::nullopt;
+
 	while (window_->pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
@@ -82,9 +86,7 @@ void SFMLInputRenderer::BeginFrame()
 		}
 		else if(event.type == sf::Event::Resized)
 		{
-			actualVectorSize = window_->getSize();
-			newVectorSize = sf::Vector2u(event.size.width, event.size.height);
-			heightWidthRetio_ = Vector2((event.size.height + 600)/ event.size.width, (event.size.width + 800) / event.size.height);
+			heightWidthRetio_ = Vector2(static_cast<float>(event.size.width) / 800.0f, static_cast<float>(event.size.height) / 600.0f);
 		}
 	}
 	
@@ -93,7 +95,7 @@ void SFMLInputRenderer::BeginFrame()
 
 	/**/
 	sf::RectangleShape rectangle;
-	rectangle.setSize(sf::Vector2f(100 * GetHightWidthRetio()[0], 50 * GetHightWidthRetio()[1]));
+	rectangle.setSize(sf::Vector2f(800 * (*GetHightWidthRetio())[1], 600 * (*GetHightWidthRetio())[0]));
 	rectangle.setOutlineColor(sf::Color::Red);
 	rectangle.setOutlineThickness(5);
 	rectangle.setPosition(10, 20);

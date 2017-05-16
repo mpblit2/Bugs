@@ -1,5 +1,6 @@
 #pragma once
 
+#include <optional>
 #include <memory>
 #include <SFML/Graphics.hpp>
 #include "../BugsCore/IInputRenderer.h"
@@ -20,13 +21,13 @@ public:
 	bool LoadTexture(const std::string& fileName, const std::string& id) override;
 	void UnLoadTexture(const std::string& id) override;
 	void RenderTexture(const std::string& id, const Bugs::Vector2& position) override;
-	Bugs::Vector2 GetHightWidthRetio() const override;
+	std::optional<Bugs::Vector2> GetHightWidthRetio() const override;
 
 	bool IsKeyPressed(char key) override;
 
 private:
 	std::unique_ptr<sf::RenderWindow> window_;
 	std::map<std::string, sf::Texture> textures_;
-	Bugs::Vector2 heightWidthRetio_;
+	std::optional<Bugs::Vector2> heightWidthRetio_;
 };
 

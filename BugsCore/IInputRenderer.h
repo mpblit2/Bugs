@@ -1,4 +1,5 @@
 #pragma once
+#include<optional>
 #include<string>
 
 namespace Bugs
@@ -21,7 +22,7 @@ namespace Bugs
 		virtual bool LoadTexture(const std::string& fileName, const std::string& id) = 0;
 		virtual void UnLoadTexture(const std::string& id) = 0;
 		virtual void RenderTexture(const std::string& id, const Vector2& position) = 0;
-		virtual Vector2 GetHightWidthRetio() const = 0;
+		virtual std::optional<Vector2> GetHightWidthRetio() const = 0;
 
 		//Input methodes
 		virtual bool IsKeyPressed(char key) = 0;

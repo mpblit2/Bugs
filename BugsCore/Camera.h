@@ -15,8 +15,15 @@ namespace Bugs
 
 		void Scale(const Vector2& ratio)
 		{
-			box_.SetHeight(height_ * ratio[0]);
-			box_.SetWidth(width_ * ratio[1]);
+			box_.SetWidth(width_ * ratio[0]);
+			box_.SetHeight(height_ * ratio[1]);
+			//box_.Scale(ratio[0] / ratio[1]);
+			//box_.SetHeight(box_.GetHalves()[1] * 2 * ratio[0]);
+			//box_.SetHeight(box_.GetHalves()[0] * 2 * ratio[1]);
+			//box_.SetWidth(box_.GetHalves()[0] * 2 * ratio[1]);
+			//box_.SetWidth(box_.GetHalves()[1] * 2 * ratio[0]);
+
+			//box_.Scale(ratio[1] / ratio[0]);
 		}
 
 		float GetWidth() const

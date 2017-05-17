@@ -29,5 +29,6 @@ private:
 	std::unique_ptr<sf::RenderWindow> window_;
 	std::map<std::string, sf::Texture> textures_;
 	std::optional<Bugs::Vector2> heightWidthRetio_;
+	sf::RectangleShape rectangle;
 };
 

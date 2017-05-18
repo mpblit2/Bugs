@@ -25,10 +25,11 @@ public:
 
 	bool IsKeyPressed(char key) override;
 
+	void DrawCamera(float width, float height, const Bugs::Vector2& position) override;
+
 private:
 	std::unique_ptr<sf::RenderWindow> window_;
 	std::map<std::string, sf::Texture> textures_;
 	std::optional<Bugs::Vector2> heightWidthRetio_;
-	sf::RectangleShape rectangle;
 };
 

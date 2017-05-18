@@ -14,7 +14,7 @@ Application::~Application()
 
 int Bugs::Application::Run()
 {	
-	Camera camera(200.0f, 100.0f, Vector2(400, 300));
+	Camera camera(200.0f, 200.0f, Vector2(400, 300));
 	
 	std::vector<std::unique_ptr<Bug>> bugs;
 	bugs.emplace_back(std::make_unique<Bug>("default", Vector2(400,300)));
@@ -43,7 +43,8 @@ int Bugs::Application::Run()
 			camera.Scale(*ratio);
 			std::cout << "After: " << camera.GetWidth() << "x" << camera.GetHeight() << std::endl;
 		}
-		
+		std::cout << "After: " << camera.GetWidth() << "x" << camera.GetHeight() << std::endl;
+		inputRenderer_.DrawCamera(camera.GetWidth(), camera.GetHeight(), camera.GetPosition());
 
 		inputRenderer_.EndFrame();
 		auto& currentBug = *bugs[currentBugIndex];
@@ -72,9 +73,7 @@ int Bugs::Application::Run()
 		if (inputRenderer_.IsKeyPressed('q'))
 		{
 			break;
-		}
-
-		
+		}	
 	}
 
 	inputRenderer_.Shutdown();

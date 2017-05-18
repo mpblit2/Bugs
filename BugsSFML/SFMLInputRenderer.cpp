@@ -61,12 +61,20 @@ bool SFMLInputRenderer::IsKeyPressed(char key)
 	return sf::Keyboard::isKeyPressed(sfKey);
 }
 
+void SFMLInputRenderer::DrawCamera(float width, float height, const Bugs::Vector2& position)
+{
+	sf::RectangleShape rectangle = sf::RectangleShape(sf::Vector2f(width, height));
+	rectangle.setOutlineColor(sf::Color::Red);
+	rectangle.setOutlineThickness(1);
+	rectangle.setPosition(position.GetX(), position.GetY());
+
+	window_->draw(rectangle);
+}
+
 void SFMLInputRenderer::Init()
 {
 	window_ = std::make_unique<sf::RenderWindow>(sf::VideoMode(800, 600), "BugsSFML");
 	window_->setFramerateLimit(60);
-	 rectangle = sf::RectangleShape(sf::Vector2f(200, 100));
-	//heightWidthRetio_ = Vector2(1, 1);
 }
 
 void SFMLInputRenderer::BeginFrame()
@@ -77,7 +85,7 @@ void SFMLInputRenderer::BeginFrame()
 	auto newVectorSize = sf::Vector2u();
 	
 	actualVectorSize = window_->getSize();
-	//
+	
 	heightWidthRetio_ = std::nullopt;
 
 	while (window_->pollEvent(event))
@@ -88,32 +96,12 @@ void SFMLInputRenderer::BeginFrame()
 		}
 		else if(event.type == sf::Event::Resized)
 		{
-			heightWidthRetio_ = Vector2(static_cast<float>(event.size.width) / 800.0f, static_cast<float>(event.size.height) / 600.0f);
-			//heightWidthRetio_ = Vector2(static_cast<float>(event.size.width) / static_cast<float>(actualVectorSize.x),
-				//static_cast<float>(event.size.height) / static_cast<float>(actualVectorSize.y));
+			heightWidthRetio_ = Vector2(static_cast<float>(event.size.width) / static_cast<float>(actualVectorSize.x),
+				static_cast<float>(event.size.height) / static_cast<float>(actualVectorSize.y));
 		}
 	}
 	
 	window_->clear(sf::Color::Black);
-
-
-	//std::cout << "->" << GetHightWidthRetio()[0] << "x" << GetHightWidthRetio()[1] << std::endl;
-	
-	//sf::RectangleShape rectangle(sf::Vector2f(200, 100));
-	if (GetHightWidthRetio())
-	{
-		rectangle.setScale((*GetHightWidthRetio())[1], (*GetHightWidthRetio())[0]);
-		//rectangle.setSize(sf::Vector2f(200 * (*GetHightWidthRetio())[1], 100 * (*GetHightWidthRetio())[0]));
-	}else
-	{
-		//rectangle.setSize(sf::Vector2f(100, 100));
-	}
-	rectangle.setOutlineColor(sf::Color::Red);
-	rectangle.setOutlineThickness(1);
-	rectangle.setPosition(400, 300);
-
-	window_->draw(rectangle);
-	
 }
 
 void SFMLInputRenderer::EndFrame()

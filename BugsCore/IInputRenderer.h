@@ -26,5 +26,7 @@ namespace Bugs
 
 		//Input methodes
 		virtual bool IsKeyPressed(char key) = 0;
+
+		virtual void DrawCamera(float width, float height, const Bugs::Vector2& position) = 0;
 	};
 }

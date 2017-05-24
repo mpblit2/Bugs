@@ -2,6 +2,8 @@
 #include <iostream>
 #include <memory>
 #include "../BugsCore/Vector2.h"
+#include "../BugsCore/BoundingBox.h"
+#include "../BugsCore/Circle.h"
 
 using namespace Bugs;
 
@@ -53,6 +55,26 @@ void SFMLInputRenderer::RenderTexture(const std::string & id, const Bugs::Vector
 std::optional<Vector2> SFMLInputRenderer::GetHightWidthRetio() const
 {
 	return heightWidthRetio_;
+}
+
+void SFMLInputRenderer::Render(const BoundingBox & box)
+{
+	sf::RectangleShape rectangle = sf::RectangleShape(sf::Vector2f(box.GetHalves()[0] * 2, box.GetHalves()[1] * 2));
+	rectangle.setOutlineColor(sf::Color::Blue);
+	rectangle.setOutlineThickness(1);
+	rectangle.setPosition(box.GetPosition()[0], box.GetPosition()[1]);
+
+	window_->draw(rectangle);
+}
+
+void SFMLInputRenderer::Render(const Circle & circle)
+{
+	sf::CircleShape sfCircle = sf::CircleShape(circle.GetRadius());
+	sfCircle.setOutlineColor(sf::Color::Blue);
+	sfCircle.setOutlineThickness(1);
+	sfCircle.setPosition(circle.GetPosition()[0], circle.GetPosition()[1]);
+
+	window_->draw(sfCircle);
 }
 
 bool SFMLInputRenderer::IsKeyPressed(char key)

@@ -16,7 +16,7 @@ public:
 	void Shutdown() override;
 	virtual bool IsWindowOpen();
 
-	void BeginFrame() override;
+	void BeginFrame(const Bugs::Camera& camera) override;
 	void EndFrame() override;
 	bool LoadTexture(const std::string& fileName, const std::string& id) override;
 	void UnLoadTexture(const std::string& id) override;
@@ -30,8 +30,12 @@ public:
 	void DrawCamera(float width, float height, const Bugs::Vector2& position) override;
 
 private:
+	sf::Vector2f Convert(const Bugs::Vector2& vector) const;
+	float Convert(float length) const;
+
 	std::unique_ptr<sf::RenderWindow> window_;
 	std::map<std::string, sf::Texture> textures_;
 	std::optional<Bugs::Vector2> heightWidthRetio_;
+	Bugs::Vector2 a_, b_;
 };
 

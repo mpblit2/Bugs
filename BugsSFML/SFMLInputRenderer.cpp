@@ -4,6 +4,7 @@
 #include "../BugsCore/Vector2.h"
 #include "../BugsCore/BoundingBox.h"
 #include "../BugsCore/Circle.h"
+#include "../BugsCore/Camera.h"
 
 using namespace Bugs;
 
@@ -59,20 +60,20 @@ std::optional<Vector2> SFMLInputRenderer::GetHightWidthRetio() const
 
 void SFMLInputRenderer::Render(const BoundingBox & box)
 {
-	sf::RectangleShape rectangle = sf::RectangleShape(sf::Vector2f(box.GetHalves()[0] * 2, box.GetHalves()[1] * 2));
+	sf::RectangleShape rectangle = sf::RectangleShape(sf::Vector2f(Convert(box.GetHalves()[0] * 2), Convert(box.GetHalves()[1] * 2)));
 	rectangle.setOutlineColor(sf::Color::Blue);
 	rectangle.setOutlineThickness(1);
-	rectangle.setPosition(box.GetPosition()[0], box.GetPosition()[1]);
+	rectangle.setPosition(Convert(box.GetPosition()));
 
 	window_->draw(rectangle);
 }
 
 void SFMLInputRenderer::Render(const Circle & circle)
 {
-	sf::CircleShape sfCircle = sf::CircleShape(circle.GetRadius());
+	sf::CircleShape sfCircle = sf::CircleShape(Convert(circle.GetRadius()));
 	sfCircle.setOutlineColor(sf::Color::Blue);
 	sfCircle.setOutlineThickness(1);
-	sfCircle.setPosition(circle.GetPosition()[0], circle.GetPosition()[1]);
+	sfCircle.setPosition(Convert(circle.GetPosition()));
 
 	window_->draw(sfCircle);
 }
@@ -93,13 +94,24 @@ void SFMLInputRenderer::DrawCamera(float width, float height, const Bugs::Vector
 	window_->draw(rectangle);
 }
 
+sf::Vector2f SFMLInputRenderer::Convert(const Bugs::Vector2 & vector) const
+{
+	Bugs::Vector2 result = a_ * vector + b_;
+	return sf::Vector2f(result.GetX(), result.GetY());
+}
+
+float SFMLInputRenderer::Convert(float length) const
+{
+	return a_.GetX() * length;
+}
+
 void SFMLInputRenderer::Init()
 {
 	window_ = std::make_unique<sf::RenderWindow>(sf::VideoMode(800, 600), "BugsSFML");
 	window_->setFramerateLimit(60);
 }
 
-void SFMLInputRenderer::BeginFrame()
+void SFMLInputRenderer::BeginFrame(const Camera& camera)
 {
 	sf::Event event;
 
@@ -124,6 +136,11 @@ void SFMLInputRenderer::BeginFrame()
 	}
 	
 	window_->clear(sf::Color::Black);
+	//b - vector przesuniêcia
+	b_ = Vector2(camera.GetPosition()[0] - camera.GetWidth()/2, camera.GetPosition()[1] + camera.GetHeight()/2);
+	
+	//a - vector skalowania
+	a_ = Vector2(window_->getSize().x / camera.GetWidth() , - (window_->getSize().y / camera.GetHeight()));
 }
 
 void SFMLInputRenderer::EndFrame()

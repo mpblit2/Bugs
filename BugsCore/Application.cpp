@@ -15,9 +15,8 @@ Application::~Application()
 
 int Bugs::Application::Run()
 {	
-	/*
-	Camera camera(200.0f, 200.0f, Vector2(400, 300));
-	*/
+	
+	Camera camera(300.0f, 300.0f, Vector2(0, 0));
 
 	BoundingBox myBox = BoundingBox(Vector2(100.0f, 100.0f), Vector2(50.0f, 100.0f));
 	Circle myCircle = Circle(Vector2(300.0f, 100.0f), 25.0f);
@@ -34,10 +33,10 @@ int Bugs::Application::Run()
 
 	while (inputRenderer_.IsWindowOpen())
 	{
-		inputRenderer_.BeginFrame();
+		inputRenderer_.BeginFrame(camera);
 		for (auto& bug : bugs)
 		{
-			inputRenderer_.RenderTexture(bug->GetTextureID(), bug->GetPosition());
+			//inputRenderer_.RenderTexture(bug->GetTextureID(), bug->GetPosition());
 		}
 
 		/*

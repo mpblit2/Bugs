@@ -105,6 +105,14 @@ namespace Bugs
 			return *this;
 		}
 
+		Vector2& operator*=(const Vector2& vector)
+		{
+			this->x_ *= vector.x_;
+			this->y_ *= vector.y_;
+
+			return *this;
+		}
+
 		Vector2& operator/=(const float scalar)
 		{
 			if (scalar == 0)
@@ -166,5 +174,11 @@ namespace Bugs
 	{
 		Vector2 result(left);
 		return result /= right;
+	}
+
+	inline Vector2 operator*(const Vector2& left, const Vector2& right)
+	{
+		Vector2 result(left);
+		return result *= right;
 	}
 }

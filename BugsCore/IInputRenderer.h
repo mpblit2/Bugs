@@ -7,6 +7,7 @@ namespace Bugs
 	class Circle;
 	class BoundingBox;
 	class Vector2;
+	class Camera;
 
 	struct IInputRenderer
 	{
@@ -19,7 +20,7 @@ namespace Bugs
 		virtual bool IsWindowOpen() = 0;
 
 		//Rendering methodes
-		virtual void BeginFrame() = 0;
+		virtual void BeginFrame(const Camera& camera) = 0;
 		virtual void EndFrame() = 0;
 		virtual bool LoadTexture(const std::string& fileName, const std::string& id) = 0;
 		virtual void UnLoadTexture(const std::string& id) = 0;

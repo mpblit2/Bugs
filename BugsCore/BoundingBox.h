@@ -73,6 +73,16 @@ namespace Bugs
 				& (std::abs(distance.GetY()) <= halvesDiff.GetY());
 		}
 
+		void SetHalves(const Vector2& halves)
+		{
+			halves_ = halves;
+		}
+
+		void SetPosition(const Vector2& position)
+		{
+			position_ = position;
+		}
+
 	private:
 		Vector2 position_;
 		Vector2 halves_;

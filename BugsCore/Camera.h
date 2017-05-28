@@ -7,7 +7,7 @@ namespace Bugs
 	{
 	public:
 		Camera(const float width, const float height, const Vector2& position)
-			: /*width_(width), height_(height),*/ box_(position, Vector2(width/2, height/2))
+			: box_(position, Vector2(width/2, height/2))
 		{}
 
 		~Camera()
@@ -43,9 +43,62 @@ namespace Bugs
 			return box_.GetPosition();
 		}
 
+		void ZoomIn()
+		{
+			auto halves = box_.GetHalves();
+
+			halves *= 0.99;
+
+			box_.SetHalves(halves);
+		}
+
+		void ZoomOut()
+		{
+			auto halves = box_.GetHalves();
+
+			halves *= 1.01;
+
+			box_.SetHalves(halves);
+		}
+
+		void MoveLeft()
+		{
+			auto position = box_.GetPosition();
+
+			position[0] -= 1.5;
+
+			box_.SetPosition(position);
+		}
+
+
+		void MoveRight()
+		{
+			auto position = box_.GetPosition();
+
+			position[0] += 1.5;
+
+			box_.SetPosition(position);
+		}
+
+		void MoveUp()
+		{
+			auto position = box_.GetPosition();
+
+			position[1] += 1.5;
+
+			box_.SetPosition(position);
+		}
+
+		void MoveDown()
+		{
+			auto position = box_.GetPosition();
+
+			position[1] -= 1.5;
+
+			box_.SetPosition(position);
+		}
+
 	private:
 		BoundingBox box_;
-		//float width_;
-		//float height_;
 	};
 }

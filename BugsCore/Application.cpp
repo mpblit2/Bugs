@@ -16,7 +16,7 @@ Application::~Application()
 int Bugs::Application::Run()
 {	
 	
-	Camera camera(300.0f, 300.0f, Vector2(0, 0));
+	Camera camera(800.0f, 600.0f, Vector2(0, 0));
 
 	BoundingBox myBox = BoundingBox(Vector2(100.0f, 100.0f), Vector2(50.0f, 100.0f));
 	Circle myCircle = Circle(Vector2(300.0f, 100.0f), 25.0f);
@@ -88,7 +88,37 @@ int Bugs::Application::Run()
 		if (inputRenderer_.IsKeyPressed('q'))
 		{
 			break;
-		}	
+		}
+
+		if (inputRenderer_.IsKeyPressed('i'))
+		{
+			camera.ZoomIn();
+		}
+
+		if (inputRenderer_.IsKeyPressed('o'))
+		{
+			camera.ZoomOut();
+		}
+
+		if (inputRenderer_.IsKeyPressed('n'))
+		{
+			camera.MoveLeft();
+		}
+
+		if (inputRenderer_.IsKeyPressed('m'))
+		{
+			camera.MoveRight();
+		}
+
+		if (inputRenderer_.IsKeyPressed('k'))
+		{
+			camera.MoveUp();
+		}
+
+		if (inputRenderer_.IsKeyPressed('l'))
+		{
+			camera.MoveDown();
+		}
 	}
 
 	inputRenderer_.Shutdown();

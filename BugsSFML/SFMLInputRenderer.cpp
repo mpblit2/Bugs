@@ -96,7 +96,7 @@ void SFMLInputRenderer::DrawCamera(float width, float height, const Bugs::Vector
 
 sf::Vector2f SFMLInputRenderer::Convert(const Bugs::Vector2 & vector) const
 {
-	Bugs::Vector2 result = a_ * vector + b_;
+	Bugs::Vector2 result = a_ * (vector - b_);
 	return sf::Vector2f(result.GetX(), result.GetY());
 }
 

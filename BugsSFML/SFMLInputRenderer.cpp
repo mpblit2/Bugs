@@ -78,11 +78,33 @@ void SFMLInputRenderer::Render(const Circle & circle)
 	window_->draw(sfCircle);
 }
 
+void SFMLInputRenderer::SetKeyMap(const Bugs::KeyMap & keyMap)
+{
+	for (auto& data : keyMap)
+	{
+		keyMap_[ConvertKey(data.first)] = data.second;
+	}
+}
+
+void SFMLInputRenderer::ProcessKeys()
+{
+	for (auto& data : keyMap_)
+	{
+		
+		if (sf::Keyboard::isKeyPressed(data.first))
+		{
+			data.second();
+		}
+	}
+}
+
+/*
 bool SFMLInputRenderer::IsKeyPressed(char key)
 {
 	auto sfKey = static_cast<sf::Keyboard::Key>(key - 'a');
 	return sf::Keyboard::isKeyPressed(sfKey);
 }
+*/
 
 void SFMLInputRenderer::DrawCamera(float width, float height, const Bugs::Vector2& position)
 {
@@ -103,6 +125,22 @@ sf::Vector2f SFMLInputRenderer::Convert(const Bugs::Vector2 & vector) const
 float SFMLInputRenderer::Convert(float length) const
 {
 	return a_.GetX() * length;
+}
+
+sf::Keyboard::Key SFMLInputRenderer::ConvertKey(Bugs::KeyCode key) const
+{
+	static const std::map < KeyCode, sf::Keyboard::Key> keyConversion = {
+		{Bugs::KeyCode::ArrowUp, sf::Keyboard::Key::Up}, 
+		{Bugs::KeyCode::ArrowDown, sf::Keyboard::Key::Down},
+		{Bugs::KeyCode::ArrowLeft, sf::Keyboard::Key::Left},
+		{Bugs::KeyCode::ArrowRight, sf::Keyboard::Key::Right},
+		{Bugs::KeyCode::I, sf::Keyboard::Key::I},
+		{Bugs::KeyCode::O, sf::Keyboard::Key::O}
+	};
+
+	auto it = keyConversion.find(key);
+
+	return it->second;
 }
 
 void SFMLInputRenderer::Init()

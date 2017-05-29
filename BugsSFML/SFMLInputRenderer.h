@@ -25,17 +25,22 @@ public:
 	void Render(const Bugs::BoundingBox& box) override;
 	void Render(const Bugs::Circle& circle) override;
 
-	bool IsKeyPressed(char key) override;
+	//usun¹æ -> bool IsKeyPressed(char key) override;
+	void SetKeyMap(const Bugs::KeyMap& keyMap) override;
+	void ProcessKeys() override;
 
+	//usun¹æ DrawCamera
 	void DrawCamera(float width, float height, const Bugs::Vector2& position) override;
 
 private:
 	sf::Vector2f Convert(const Bugs::Vector2& vector) const;
 	float Convert(float length) const;
+	sf::Keyboard::Key ConvertKey(Bugs::KeyCode key) const;
 
 	std::unique_ptr<sf::RenderWindow> window_;
 	std::map<std::string, sf::Texture> textures_;
 	std::optional<Bugs::Vector2> heightWidthRetio_;
 	Bugs::Vector2 a_, b_;
+	std::map <sf::Keyboard::Key, std::function<void()>> keyMap_;
 };
 

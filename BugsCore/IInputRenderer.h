@@ -1,6 +1,8 @@
 #pragma once
 #include<optional>
 #include<string>
+#include<functional>
+#include"KeyCode.h"
 
 namespace Bugs
 {
@@ -8,6 +10,7 @@ namespace Bugs
 	class BoundingBox;
 	class Vector2;
 	class Camera;
+	using KeyMap = std::map<KeyCode, std::function<void()>>;
 
 	struct IInputRenderer
 	{
@@ -30,7 +33,9 @@ namespace Bugs
 		virtual void Render(const Circle& circle) = 0;
 
 		//Input methodes
-		virtual bool IsKeyPressed(char key) = 0;
+		//usun¹æ -> virtual bool IsKeyPressed(char key) = 0;
+		virtual void SetKeyMap(const KeyMap& keyMap) = 0;
+		virtual void ProcessKeys() = 0;
 
 		virtual void DrawCamera(float width, float height, const Bugs::Vector2& position) = 0;
 	};

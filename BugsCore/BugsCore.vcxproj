@@ -134,6 +134,7 @@
     <ClInclude Include="Circle.h" />
     <ClInclude Include="HalfLine.h" />
     <ClInclude Include="IInputRenderer.h" />
+    <ClInclude Include="KeyCode.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="LineSegment.h" />
     <ClInclude Include="Matrix2.h" />

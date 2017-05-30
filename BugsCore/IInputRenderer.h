@@ -33,10 +33,7 @@ namespace Bugs
 		virtual void Render(const Circle& circle) = 0;
 
 		//Input methodes
-		//usun¹æ -> virtual bool IsKeyPressed(char key) = 0;
 		virtual void SetKeyMap(const KeyMap& keyMap) = 0;
 		virtual void ProcessKeys() = 0;
-
-		virtual void DrawCamera(float width, float height, const Bugs::Vector2& position) = 0;
 	};
 }

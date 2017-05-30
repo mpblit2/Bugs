@@ -25,12 +25,8 @@ public:
 	void Render(const Bugs::BoundingBox& box) override;
 	void Render(const Bugs::Circle& circle) override;
 
-	//usun¹æ -> bool IsKeyPressed(char key) override;
 	void SetKeyMap(const Bugs::KeyMap& keyMap) override;
 	void ProcessKeys() override;
-
-	//usun¹æ DrawCamera
-	void DrawCamera(float width, float height, const Bugs::Vector2& position) override;
 
 private:
 	sf::Vector2f Convert(const Bugs::Vector2& vector) const;

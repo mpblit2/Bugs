@@ -18,6 +18,7 @@ SFMLInputRenderer::~SFMLInputRenderer()
 
 void SFMLInputRenderer::Shutdown()
 {
+	//window_->close();
 }
 
 bool SFMLInputRenderer::IsWindowOpen()
@@ -98,24 +99,6 @@ void SFMLInputRenderer::ProcessKeys()
 	}
 }
 
-/*
-bool SFMLInputRenderer::IsKeyPressed(char key)
-{
-	auto sfKey = static_cast<sf::Keyboard::Key>(key - 'a');
-	return sf::Keyboard::isKeyPressed(sfKey);
-}
-*/
-
-void SFMLInputRenderer::DrawCamera(float width, float height, const Bugs::Vector2& position)
-{
-	sf::RectangleShape rectangle = sf::RectangleShape(sf::Vector2f(width, height));
-	rectangle.setOutlineColor(sf::Color::Red);
-	rectangle.setOutlineThickness(1);
-	rectangle.setPosition(position.GetX(), position.GetY());
-
-	window_->draw(rectangle);
-}
-
 sf::Vector2f SFMLInputRenderer::Convert(const Bugs::Vector2 & vector) const
 {
 	Bugs::Vector2 result = a_ * (vector - b_);
@@ -162,7 +145,14 @@ void SFMLInputRenderer::BeginFrame(const Camera& camera)
 
 	while (window_->pollEvent(event))
 	{
-		if (event.type == sf::Event::Closed)
+		if (event.type == sf::Event::KeyPressed)
+		{
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			{
+				window_->close();
+			}
+		}
+		else if (event.type == sf::Event::Closed)
 		{
 			window_->close();
 		}

@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Vector2.h"
+#include "BoundingBox.h"
 
 namespace Bugs
 {
@@ -25,8 +26,14 @@ namespace Bugs
 		void MoveLeft();
 		void MoveRight();
 
+		const BoundingBox& GetBox() const
+		{
+			return box_;
+		}
+
 	private:
 		std::string textureId_;
 		Vector2 position_;
+		BoundingBox box_;
 	};
 }

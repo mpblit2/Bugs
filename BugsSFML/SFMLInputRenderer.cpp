@@ -118,10 +118,18 @@ sf::Keyboard::Key SFMLInputRenderer::ConvertKey(Bugs::KeyCode key) const
 		{Bugs::KeyCode::ArrowLeft, sf::Keyboard::Key::Left},
 		{Bugs::KeyCode::ArrowRight, sf::Keyboard::Key::Right},
 		{Bugs::KeyCode::I, sf::Keyboard::Key::I},
-		{Bugs::KeyCode::O, sf::Keyboard::Key::O}
+		{Bugs::KeyCode::O, sf::Keyboard::Key::O},
+		{Bugs::KeyCode::C, sf::Keyboard::Key::C},
+		{Bugs::KeyCode::A, sf::Keyboard::Key::A},
+		{Bugs::KeyCode::D, sf::Keyboard::Key::D}
 	};
 
 	auto it = keyConversion.find(key);
+	
+	if (it == keyConversion.end())
+	{
+		throw std::runtime_error("Undefined key.");
+	}
 
 	return it->second;
 }

@@ -28,6 +28,7 @@ int Bugs::Application::Run()
 	keyMap[KeyCode::ArrowLeft] = [&]() { camera.MoveLeft(); };
 	keyMap[KeyCode::ArrowRight] = [&]() { camera.MoveRight(); };
 
+
 	BoundingBox myBox = BoundingBox(Vector2(100.0f, 100.0f), Vector2(50.0f, 100.0f));
 	Circle myCircle = Circle(Vector2(300.0f, 100.0f), 25.0f);
 
@@ -37,6 +38,27 @@ int Bugs::Application::Run()
 	bugs.emplace_back(std::make_unique<Bug>("default", Vector2(200, 300)));
 
 	std::size_t currentBugIndex = 0;
+
+	//Keys map to operate on Bugs
+	keyMap[KeyCode::C] = [&]() { 
+		
+		currentBugIndex += 1; 
+		
+		if (currentBugIndex >= bugs.size())
+		{
+			currentBugIndex = 0;
+		}
+	};
+
+	keyMap[KeyCode::A] = [&]() {
+		auto& currentBug = *bugs[currentBugIndex]; 
+		currentBug.MoveLeft();
+	};
+
+	keyMap[KeyCode::D] = [&]() {
+		auto& currentBug = *bugs[currentBugIndex];
+		currentBug.MoveRight();
+	};
 
 	inputRenderer_.Init();
 	inputRenderer_.LoadTexture("C:\\Projekty\\Pictures\\animal.png", "default");
@@ -48,7 +70,8 @@ int Bugs::Application::Run()
 		inputRenderer_.BeginFrame(camera);
 		for (auto& bug : bugs)
 		{
-			inputRenderer_.RenderTexture(bug->GetTextureID(), bug->GetPosition());
+			//inputRenderer_.RenderTexture(bug->GetTextureID(), bug->GetPosition());
+			inputRenderer_.Render(bug->GetBox());
 		}
 
 		inputRenderer_.Render(myBox);
@@ -58,29 +81,6 @@ int Bugs::Application::Run()
 		auto& currentBug = *bugs[currentBugIndex];
 
 		inputRenderer_.ProcessKeys();
-		
-		/*
-		if (inputRenderer_.IsKeyPressed('c'))
-		{
-			//currentBug = (currentBug + 1) % bugs.size()
-			currentBugIndex += 1;
-
-			if (currentBugIndex >= bugs.size())
-			{
-				currentBugIndex = 0;
-			}
-		}
-
-		if (inputRenderer_.IsKeyPressed('a'))
-		{
-			currentBug.MoveLeft();
-		}
-
-		if (inputRenderer_.IsKeyPressed('d'))
-		{
-			currentBug.MoveRight();
-		}
-		*/
 	}
 
 	inputRenderer_.Shutdown();
